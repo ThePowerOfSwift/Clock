@@ -66,7 +66,6 @@ class AddClockViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Table view data source
 
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -116,8 +115,6 @@ class AddClockViewController: UITableViewController, UISearchBarDelegate {
   
     // MARK: - UISearchBarDelegate
     
-    
-    //MARK: -UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.view.endEditing(true)
     }
@@ -136,39 +133,5 @@ class AddClockViewController: UITableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
         }
     }
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 

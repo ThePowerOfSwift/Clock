@@ -18,6 +18,7 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
             tableView.dataSource = self
         }
     }
+    
     @IBOutlet weak var stopwatchLabel: UILabel!
     @IBOutlet weak var lapLabel: UILabel!
     @IBOutlet weak var startstopButton: RoundedButton!
@@ -37,6 +38,8 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         self.stopwatchLabel.text = StopWatch.sharedInstance.stopWatchString
         self.lapLabel.text = StopWatch.sharedInstance.stopWatchLapString
+        
+        
     }
     
     
@@ -58,7 +61,6 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
         StopWatch.sharedInstance.resetTimeLap()
         self.lapLabel.text = Constants.StopWatch.StartAllZerosText
         self.timerLap = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTimeLap), userInfo: nil, repeats: true)
-        
     }
     
     
@@ -78,7 +80,6 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
         cell.backgroundColor = self.view.backgroundColor
         cell.textLabel!.text = StopWatch.sharedInstance.getLaps(indexPath)
         cell.detailTextLabel?.text = StopWatch.sharedInstance.laps[indexPath.row]
-        
         return cell
     }
     
@@ -88,10 +89,11 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func onStartStopPressed(sender: AnyObject) {
         
         if startTheStopWatch == true {
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTime), userInfo: nil, repeats: true)
+                self.timerLap = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTimeLap), userInfo: nil, repeats: true)
+            })
             
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTime), userInfo: nil, repeats: true)
-            self.timerLap = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTimeLap), userInfo: nil, repeats: true)
-
             self.startstopButton.setTitle("Stop", forState: .Normal)
             self.lapReset.setTitle("Lap", forState: .Normal)
             

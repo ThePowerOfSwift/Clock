@@ -10,7 +10,6 @@ import UIKit
 
 class RoundedButton: UIButton {
 
-    
     override func drawRect(rect: CGRect) {
         // Drawing code
         self.layer.cornerRadius = self.bounds.size.width/2

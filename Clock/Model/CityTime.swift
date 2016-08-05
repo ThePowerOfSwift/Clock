@@ -16,7 +16,6 @@ class CityTime {
     
     static let sharedInstance = CityTime()
     
-    
     var currentDate: NSDate
     var dateFormatter: NSDateFormatter
     

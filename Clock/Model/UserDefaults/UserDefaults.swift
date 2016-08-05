@@ -6,7 +6,10 @@
 //  Copyright © 2016 Mihail Șalari. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+
+let datepikerKey = "PKkey"
 
 class UserDefaults: NSObject {
     
@@ -43,4 +46,12 @@ class UserDefaults: NSObject {
         self.userDefaults.synchronize()
     }
     
+    func saveDatePickerToNSUserDefaults(value: UIDatePicker, withKey key: String) {
+        self.userDefaults.setObject(value.date, forKey: key)
+        self.userDefaults.synchronize()
+    }
+    
+    func getDatePickerFromNSUserDefaults(from key: String) -> NSDate {
+        return userDefaults.objectForKey(datepikerKey) as! NSDate
+    }
 }

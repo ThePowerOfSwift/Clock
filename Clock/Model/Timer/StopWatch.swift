@@ -73,21 +73,23 @@ class StopWatch: NSObject {
     // Calculate general time
     
     func getTime() {
-        fractions += 1
-        if fractions == 100 {
+        
+        self.fractions += 1
+        if  self.fractions == 100 {
             
-            seconds += 1
-            fractions = 0
+            self.seconds += 1
+             self.fractions = 0
         }
-        if seconds == 60 {
-            minutes += 1
-            seconds = 0
+        if self.seconds == 60 {
+            self.minutes += 1
+            self.seconds = 0
         }
         
-        let fractionString = fractions > 9 ? "\(fractions)" : "0\(fractions)"
-        let secondString = seconds > 9 ? "\(seconds)": "0\(seconds)"
-        let minuteString = minutes > 9 ? "\(minutes)": "0\(minutes)"
+        let fractionString =  self.fractions > 9 ? "\( self.fractions)" : "0\( self.fractions)"
+        let secondString = self.seconds > 9 ? "\(self.seconds)": "0\(self.seconds)"
+        let minuteString = self.minutes > 9 ? "\(self.minutes)": "0\(self.minutes)"
         self.stopWatchString = "\(minuteString):\(secondString):\(fractionString)"
+       
     }
    
    

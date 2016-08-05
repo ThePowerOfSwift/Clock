@@ -89,13 +89,15 @@ class WorldClockViewController: UITableViewController, CitiesTransferableDelegat
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            WorldClocks.sharedInstance.allWorldClocks.removeAtIndex(indexPath.row)
-            //if WorldClocks.sharedInstance.allWorldClocks.count > 1 {
-                //let currentWorldClock = WorldClocks.sharedInstance.allWorldClocks[indexPath.row]
+//
+            if WorldClocks.sharedInstance.allWorldClocks.count > 0 {
+                let currentWorldClock = WorldClocks.sharedInstance.allWorldClocks[indexPath.row]
+                print(WorldClocks.sharedInstance.allWorldClocks[indexPath.row])
+                 WorldClocks.sharedInstance.allWorldClocks.removeAtIndex(indexPath.row)
                 //print(currentWorldClock)
                 print(WorldClocks.sharedInstance.allWorldClocks.count)
-                //TimeZones.sharedInstance.allTimeZones.append(currentWorldClock)
-            //}
+                TimeZones.sharedInstance.allTimeZones.append(currentWorldClock)
+            }
             
             
             

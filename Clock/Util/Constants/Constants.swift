@@ -9,16 +9,17 @@
 import Foundation
 
 struct Constants {
+    
     struct AllCitiesPreferences {
         static let AllCitiesZonePref = "AllTimeZones"
     }
+    
     struct WorldClockPerferences {
         static let WorldClockArray = "WorldClocks"
     }
     
-    
-    
     static let DomainError = "com.mihailsalari.CoreDataError"
+    
     static let Code = 9999
     
     struct CoreDataStack {
@@ -57,9 +58,6 @@ struct Constants {
     struct AddSoundViewController {
         static let SoundCell = "SoundCell"
     }
-    
- 
-
 
 }
 

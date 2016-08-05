@@ -9,10 +9,15 @@
 import UIKit
 import AVFoundation
 
-class TimerViewController: UIViewController  {
+class TimerViewController: UIViewController {
+    
     
     @IBOutlet weak var countdown: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var timePicker: UIDatePicker! {
+        didSet {
+            UserDefaults.sharedInstance.saveDatePickerToNSUserDefaults(timePicker, withKey: datepikerKey)
+        }
+    }
     @IBOutlet weak var startButton: RoundedButton!
     @IBOutlet weak var pauseButton: RoundedButton!
     
@@ -30,6 +35,7 @@ class TimerViewController: UIViewController  {
         
         setStartButton()
         self.timePicker.backgroundColor = UIColor.whiteColor()
+        self.timePicker.date = UserDefaults.sharedInstance.getDatePickerFromNSUserDefaults(from: datepikerKey)
         
         print(Timer.sharedInstance.counter)
     }
@@ -38,7 +44,16 @@ class TimerViewController: UIViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.timePicker.date = UserDefaults.sharedInstance.getDatePickerFromNSUserDefaults(from: datepikerKey)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.sharedInstance.saveDatePickerToNSUserDefaults(timePicker, withKey: datepikerKey)
+    }
     
     @IBAction func startButtonPressed(sender: AnyObject) {
         
