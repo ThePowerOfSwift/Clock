@@ -38,8 +38,6 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         self.stopwatchLabel.text = StopWatch.sharedInstance.stopWatchString
         self.lapLabel.text = StopWatch.sharedInstance.stopWatchLapString
-        
-        
     }
     
     
@@ -80,6 +78,7 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
         cell.backgroundColor = self.view.backgroundColor
         cell.textLabel!.text = StopWatch.sharedInstance.getLaps(indexPath)
         cell.detailTextLabel?.text = StopWatch.sharedInstance.laps[indexPath.row]
+        
         return cell
     }
     
@@ -89,10 +88,15 @@ class StopWatchViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func onStartStopPressed(sender: AnyObject) {
         
         if startTheStopWatch == true {
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTime), userInfo: nil, repeats: true)
-                self.timerLap = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTimeLap), userInfo: nil, repeats: true)
-            })
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTime), userInfo: nil, repeats: true)
+            self.timerLap = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopWatchViewController.updateTimeLap), userInfo: nil, repeats: true)
+            
+            // Run timmer to another thread
+            NSRunLoop.currentRunLoop() .addTimer(timer, forMode: NSRunLoopCommonModes)
+            NSRunLoop.currentRunLoop() .addTimer(timer, forMode: UITrackingRunLoopMode)
+            
+            NSRunLoop.currentRunLoop() .addTimer(timerLap, forMode: NSRunLoopCommonModes)
+            NSRunLoop.currentRunLoop() .addTimer(timerLap, forMode: UITrackingRunLoopMode)
             
             self.startstopButton.setTitle("Stop", forState: .Normal)
             self.lapReset.setTitle("Lap", forState: .Normal)
