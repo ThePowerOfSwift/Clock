@@ -7,37 +7,30 @@
 //
 
 import UIKit
-import AVFoundation
 
 class TimerViewController: UIViewController {
     
+    // MARK: - Properties
     
     @IBOutlet weak var countdown: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker! {
-        didSet {
-            UserDefaults.sharedInstance.saveDatePickerToNSUserDefaults(timePicker, withKey: datepikerKey)
-        }
-    }
+    @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var startButton: RoundedButton!
     @IBOutlet weak var pauseButton: RoundedButton!
     
     var timer = NSTimer()
-    
+    var date = NSDate()
     var timerOn = false // Timer initiated with value
     var timerPaused = false // Timer running
+    
+    
+    // MARK: - Lyfe Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timePicker.hidden = false
-        countdown.hidden = true
-        disablePauseButton()
-        
-        setStartButton()
-        self.timePicker.backgroundColor = UIColor.whiteColor()
-        self.timePicker.date = UserDefaults.sharedInstance.getDatePickerFromNSUserDefaults(from: datepikerKey)
-        
-        print(Timer.sharedInstance.counter)
+        self.disablePauseButton()
+        self.setStartButton()
+        self.hidePickerOnStart()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,16 +40,51 @@ class TimerViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.timePicker.date = UserDefaults.sharedInstance.getDatePickerFromNSUserDefaults(from: datepikerKey)
+        //countdown.text = UserDefaults.sharedInstance.getCountDownTimeFromNSUserDefaults(fromKey: Constants.TimerViewController.TimerKey)
+         //print(" viewWillAppear countdown = \(countdown.text!)")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        UserDefaults.sharedInstance.saveDatePickerToNSUserDefaults(timePicker, withKey: datepikerKey)
+        //UserDefaults.sharedInstance.saveCountdownTimeToNSUserDefaults(countdown.text!, withKey: Constants.TimerViewController.TimerKey)
+         //print("viewWillDisappear countdown = \(countdown.text!)")
     }
+    
+    
+    // MARK: - UI
+    
+    func hidePickerOnStart() {
+        timePicker.hidden = false
+        countdown.hidden = true
+        
+        // set bg picker
+        self.timePicker.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func verifCountDownTime() {
+        
+        print(Timer.sharedInstance.counter)
+        print("countdown = \(countdown.text!)")
+        
+        if countdown.text == "00:00:00" {
+            self.countdown.hidden = true
+        }
+        
+        if Timer.sharedInstance.counter > 0.0 || countdown.text != "00:00:00"{
+            self.timePicker.hidden = true
+            self.countdown.hidden = false
+            //self.startButton.setTitle("Resume", forState: .Normal)
+        } else {
+            self.timePicker.hidden = false
+            self.countdown.hidden = true
+        }
+    }
+    
+    // MARK: - IBActions
     
     @IBAction func startButtonPressed(sender: AnyObject) {
         
+        Timer.sharedInstance.stopSound()
         timerPaused = false
         
         if timerOn {
@@ -89,11 +117,11 @@ class TimerViewController: UIViewController {
     func updateTimer() {
         
         print(Timer.sharedInstance.counter)
-        
         let (hours, minutes, seconds) = getTime(timePicker)
         
         if Timer.sharedInstance.counter >= 0.0 {
             Timer.sharedInstance.counter = Timer.sharedInstance.counter - 0.01
+            
             if hours <= 0 {
                 countdown.text = String(format: "%02d:%02d", minutes, seconds)
             } else {
@@ -101,6 +129,7 @@ class TimerViewController: UIViewController {
             }
         } else {
             stopTimer()
+            Timer.sharedInstance.playSound()
             
         }
     }

@@ -51,8 +51,9 @@ struct Constants {
         static let FractionsLapKey = "fractionsLapKey"
     }
     
-    struct TimmerViewController {
+    struct TimerViewController {
         static let TimerCell = "TimerCell"
+        static let TimerKey = "TimerKey"
     }
     
     struct AddSoundViewController {

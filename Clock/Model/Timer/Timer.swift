@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class Timer: NSObject {
     
@@ -24,6 +25,31 @@ class Timer: NSObject {
         }
         set {
             UserDefaults.sharedInstance.saveNSUserDefaultsData(newValue, withKey: counterKey)
+        }
+    }
+    
+    private var audioPlayer: AVAudioPlayer!
+    private var alarmSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("loud_alarm", ofType: "caf")!)
+    
+    
+    // MARK: - Play/Stop Alarm's Sound
+    
+    func playSound() {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: alarmSound)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        } catch {
+            print("Play Sound Error")
+        }
+    }
+    
+    func stopSound() {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: alarmSound)
+            audioPlayer.stop()
+        } catch {
+           print("Stop Sound Error")
         }
     }
 }
