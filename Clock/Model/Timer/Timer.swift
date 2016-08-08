@@ -31,7 +31,7 @@ class Timer: NSObject {
             return UserDefaults.sharedInstance.getStringDateFromNSUserDefaults(fromKey: Constants.TimerViewController.CountDownKey)
         }
         set {
-            UserDefaults.sharedInstance.saveNSUserDefaultsData(countdownText, withKey: Constants.TimerViewController.CountDownKey)
+            UserDefaults.sharedInstance.saveNSUserDefaultsData(newValue, withKey: Constants.TimerViewController.CountDownKey)
         }
     }
     
@@ -41,11 +41,11 @@ class Timer: NSObject {
     
     // MARK: - Get Time From Date Picker
     
-    func getTimeFromDatePicker(picker: UIDatePicker) -> (Int, Int, Int) {
+    func getTime() -> (Int, Int, Int) {
         let minutesInAnHour = 60.0
         let secondsInAMinute = 60.0
         
-        let seconds = Int(Timer.sharedInstance.counter % secondsInAMinute)
+        let seconds = Int(counter % secondsInAMinute)
         let totalMinutes = Int(counter / secondsInAMinute)
         let minutes = Int(Double(totalMinutes) % minutesInAnHour)
         let hours = Int(Double(totalMinutes) / minutesInAnHour)

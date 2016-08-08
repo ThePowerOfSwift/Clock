@@ -30,11 +30,17 @@ class TimerViewController: UIViewController {
         self.disablePauseButton()
         self.setStartButton()
         self.hidePickerOnStart()
+        self.verifCountDownTime()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        countdown.text = Timer.sharedInstance.countdownText
     }
     
     
@@ -103,15 +109,17 @@ class TimerViewController: UIViewController {
     func updateTimer() {
         
         print(Timer.sharedInstance.counter)
-        let (hours, minutes, seconds) = Timer.sharedInstance.getTimeFromDatePicker(timePicker)
+        let (hours, minutes, seconds) = Timer.sharedInstance.getTime()
         
         if Timer.sharedInstance.counter >= 0.0 {
             Timer.sharedInstance.counter = Timer.sharedInstance.counter - 0.01
             
             if hours <= 0 {
                 countdown.text = String(format: "%02d:%02d", minutes, seconds)
+                Timer.sharedInstance.countdownText = String(format: "%02d:%02d", minutes, seconds)
             } else {
                 countdown.text = String(format: "%d:%02d:%02d", hours, minutes, seconds)
+                Timer.sharedInstance.countdownText = String(format: "%d:%02d:%02d", hours, minutes, seconds)
             }
         } else {
             stopTimer()
@@ -147,7 +155,7 @@ class TimerViewController: UIViewController {
         enablePauseButton()
         
         // Set countdown.text to timePicker value and start timer
-        Timer.sharedInstance.counter = timePicker.countDownDuration
+        //Timer.sharedInstance.counter = timePicker.countDownDuration
         updateTimer()
         timerOn = true
         timerPaused = false
