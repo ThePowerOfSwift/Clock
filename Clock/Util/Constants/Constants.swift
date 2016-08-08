@@ -10,28 +10,20 @@ import Foundation
 
 struct Constants {
     
+    struct Alphabet {
+        static let sections = ["A", "B", "C", "D", "E",
+                               "F", "G", "H", "I", "J",
+                               "K", "L", "M", "N", "O",
+                               "P", "Q", "R", "S", "T",
+                               "U", "V", "W", "X", "Y", "Z"]
+    }
+    
     struct AllCitiesPreferences {
         static let AllCitiesZonePref = "AllTimeZones"
     }
     
     struct WorldClockPerferences {
         static let WorldClockArray = "WorldClocks"
-    }
-    
-    static let DomainError = "com.mihailsalari.CoreDataError"
-    
-    static let Code = 9999
-    
-    struct CoreDataStack {
-        static let URLByAppendingPathComponent = "Clock.sqlite"
-        static let URLForResource = "Clock"
-        static let WithExtension = "momd"
-        static let NSLocalizedDescriptionKeyError = "Failed to initializa the application's saved data"
-        static let NSLocalizedFailureReasonErrorKeyError = "There was an eror creating of loading the application's saved data"
-    }
-    
-    struct DataSource {
-        static let CellIdentifier = "CityListCell"
     }
     
     struct StopWatch {
@@ -54,18 +46,7 @@ struct Constants {
     struct TimerViewController {
         static let TimerCell = "TimerCell"
         static let TimerKey = "TimerKey"
+        static let CounterKey = "CounterKey"
     }
-    
-    struct AddSoundViewController {
-        static let SoundCell = "SoundCell"
-    }
-
 }
 
-struct Alphabet {
-    static let sections = ["A", "B", "C", "D", "E",
-                           "F", "G", "H", "I", "J",
-                           "K", "L", "M", "N", "O",
-                           "P", "Q", "R", "S", "T",
-                           "U", "V", "W", "X", "Y", "Z"]
-}

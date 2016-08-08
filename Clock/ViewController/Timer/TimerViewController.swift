@@ -18,7 +18,6 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var pauseButton: RoundedButton!
     
     var timer = NSTimer()
-    var date = NSDate()
     var timerOn = false // Timer initiated with value
     var timerPaused = false // Timer running
     
@@ -66,11 +65,11 @@ class TimerViewController: UIViewController {
         print(Timer.sharedInstance.counter)
         print("countdown = \(countdown.text!)")
         
-        if countdown.text == "00:00:00" {
+        if countdown.text == Constants.StopWatch.StartAllZerosText {
             self.countdown.hidden = true
         }
         
-        if Timer.sharedInstance.counter > 0.0 || countdown.text != "00:00:00"{
+        if Timer.sharedInstance.counter > 0.0 || countdown.text != Constants.StopWatch.StartAllZerosText {
             self.timePicker.hidden = true
             self.countdown.hidden = false
             //self.startButton.setTitle("Resume", forState: .Normal)
@@ -117,7 +116,7 @@ class TimerViewController: UIViewController {
     func updateTimer() {
         
         print(Timer.sharedInstance.counter)
-        let (hours, minutes, seconds) = getTime(timePicker)
+        let (hours, minutes, seconds) = Timer.sharedInstance.getTimeFromDatePicker(timePicker)
         
         if Timer.sharedInstance.counter >= 0.0 {
             Timer.sharedInstance.counter = Timer.sharedInstance.counter - 0.01
@@ -184,15 +183,5 @@ class TimerViewController: UIViewController {
         timer.invalidate()
     }
     
-    func getTime(datePicker: UIDatePicker) -> (Int, Int, Int) {
-        let minutesInAnHour = 60.0
-        let secondsInAMinute = 60.0
-        
-        let seconds = Int(Timer.sharedInstance.counter % secondsInAMinute)
-        let totalMinutes = Int(Timer.sharedInstance.counter / secondsInAMinute)
-        let minutes = Int(Double(totalMinutes) % minutesInAnHour)
-        let hours = Int(Double(totalMinutes) / minutesInAnHour)
-        
-        return (hours, minutes, seconds)
-    }
+   
 }

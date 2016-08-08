@@ -181,9 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				8BE8CD6B1D547A2600E358F3 /* Media */,
+				8B08B7441D5856F100A686D1 /* All Time Zones */,
 				48E64BFC1D47C07F00942CCF /* AppDelegate.swift */,
 				48E64C081D47C07F00942CCF /* Info.plist */,
-				48E64C4E1D47F6EC00942CCF /* timezones.plist */,
 				48E64C031D47C07F00942CCF /* Assets.xcassets */,
 				48E64C051D47C07F00942CCF /* LaunchScreen.storyboard */,
 			);
@@ -232,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				8B6988B31D48DA3A00CD7199 /* Constants */,
-				48E64C491D47EB4500942CCF /* PlayGrounds */,
 				48E64C3D1D47CA6500942CCF /* UIKit Extensions */,
 			);
 			name = Util;
@@ -244,13 +243,6 @@
 				48E64C3E1D47CA8700942CCF /* UIKit Extensions.swift */,
 			);
 			name = "UIKit Extensions";
-			sourceTree = "<group>";
-		};
-		48E64C491D47EB4500942CCF /* PlayGrounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = PlayGrounds;
 			sourceTree = "<group>";
 		};
 		48F4D3E21D4D2B580035F12B /* Stopwatch */ = {
@@ -265,9 +257,24 @@
 			isa = PBXGroup;
 			children = (
 				48F4D3E61D4D31D00035F12B /* TimerViewController.swift */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
+		8B08B7431D58559B00A686D1 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
 				8BE8CD741D54A46800E358F3 /* Timer.swift */,
 			);
 			name = Timer;
+			sourceTree = "<group>";
+		};
+		8B08B7441D5856F100A686D1 /* All Time Zones */ = {
+			isa = PBXGroup;
+			children = (
+				48E64C4E1D47F6EC00942CCF /* timezones.plist */,
+			);
+			name = "All Time Zones";
 			sourceTree = "<group>";
 		};
 		8B6988B01D48B1FD00CD7199 /* Model */ = {
@@ -276,6 +283,7 @@
 				8BE8CD711D54A15F00E358F3 /* UserDefaults */,
 				48B84FF71D53B2CC00E80188 /* StopWatch */,
 				8BB9DE211D51F44D002D73D2 /* TimeZone */,
+				8B08B7431D58559B00A686D1 /* Timer */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -300,8 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				48F4D3E01D4D0F010035F12B /* CityTime.swift */,
-				4890C9501D5393DE0093278C /* TimeZones.swift */,
 				4890C9561D539D210093278C /* WorldClocks.swift */,
+				4890C9501D5393DE0093278C /* TimeZones.swift */,
 			);
 			name = TimeZone;
 			sourceTree = "<group>";

@@ -6,12 +6,10 @@
 //  Copyright © 2016 Mihail Șalari. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 
 class Timer: NSObject {
-    
-    private let counterKey = "CounterKey"
     
     // MARK: - Properties
     
@@ -21,15 +19,31 @@ class Timer: NSObject {
     
     var counter: Double {
         get {
-            return UserDefaults.sharedInstance.getDoubletDateFromNSUserDefaults(fromKey: counterKey)
+            return UserDefaults.sharedInstance.getDoubletDateFromNSUserDefaults(fromKey: Constants.TimerViewController.CounterKey)
         }
         set {
-            UserDefaults.sharedInstance.saveNSUserDefaultsData(newValue, withKey: counterKey)
+            UserDefaults.sharedInstance.saveNSUserDefaultsData(newValue, withKey: Constants.TimerViewController.CounterKey)
         }
     }
     
     private var audioPlayer: AVAudioPlayer!
     private var alarmSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("loud_alarm", ofType: "caf")!)
+    
+    
+    // MARK: - Get Time From Date Picker
+    
+    func getTimeFromDatePicker(picker: UIDatePicker) -> (Int, Int, Int) {
+        let minutesInAnHour = 60.0
+        let secondsInAMinute = 60.0
+        
+        let seconds = Int(Timer.sharedInstance.counter % secondsInAMinute)
+        let totalMinutes = Int(counter / secondsInAMinute)
+        let minutes = Int(Double(totalMinutes) % minutesInAnHour)
+        let hours = Int(Double(totalMinutes) / minutesInAnHour)
+        
+        return (hours, minutes, seconds)
+    }
+    
     
     
     // MARK: - Play/Stop Alarm's Sound
