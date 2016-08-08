@@ -13,11 +13,7 @@ class TimerViewController: UIViewController {
     // MARK: - Properties
     
     @IBOutlet weak var countdown: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker! {
-        didSet {
-            timePicker.countDownDuration = Timer.sharedInstance.counter
-        }
-    }
+    @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var startButton: RoundedButton!
     @IBOutlet weak var pauseButton: RoundedButton!
     
@@ -35,6 +31,8 @@ class TimerViewController: UIViewController {
         self.setStartButton()
         self.hidePickerOnStart()
         self.verifCountDownTime()
+        
+        print("timePicker.countDownDuration = \(timePicker.countDownDuration)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +43,7 @@ class TimerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         countdown.text = Timer.sharedInstance.countdownText
-        //timePicker.countDownDuration = Timer.sharedInstance.counter
+        timePicker.countDownDuration = Timer.sharedInstance.counter
     }
     
     
