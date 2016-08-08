@@ -26,6 +26,15 @@ class Timer: NSObject {
         }
     }
     
+    var countdownText: String {
+        get {
+            return UserDefaults.sharedInstance.getStringDateFromNSUserDefaults(fromKey: Constants.TimerViewController.CountDownKey)
+        }
+        set {
+            UserDefaults.sharedInstance.saveNSUserDefaultsData(countdownText, withKey: Constants.TimerViewController.CountDownKey)
+        }
+    }
+    
     private var audioPlayer: AVAudioPlayer!
     private var alarmSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("loud_alarm", ofType: "caf")!)
     
@@ -43,7 +52,6 @@ class Timer: NSObject {
         
         return (hours, minutes, seconds)
     }
-    
     
     
     // MARK: - Play/Stop Alarm's Sound
@@ -66,4 +74,26 @@ class Timer: NSObject {
            print("Stop Sound Error")
         }
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -37,18 +37,6 @@ class TimerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //countdown.text = UserDefaults.sharedInstance.getCountDownTimeFromNSUserDefaults(fromKey: Constants.TimerViewController.TimerKey)
-         //print(" viewWillAppear countdown = \(countdown.text!)")
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        //UserDefaults.sharedInstance.saveCountdownTimeToNSUserDefaults(countdown.text!, withKey: Constants.TimerViewController.TimerKey)
-         //print("viewWillDisappear countdown = \(countdown.text!)")
-    }
-    
     
     // MARK: - UI
     
@@ -63,7 +51,6 @@ class TimerViewController: UIViewController {
     func verifCountDownTime() {
         
         print(Timer.sharedInstance.counter)
-        print("countdown = \(countdown.text!)")
         
         if countdown.text == Constants.StopWatch.StartAllZerosText {
             self.countdown.hidden = true
@@ -72,7 +59,7 @@ class TimerViewController: UIViewController {
         if Timer.sharedInstance.counter > 0.0 || countdown.text != Constants.StopWatch.StartAllZerosText {
             self.timePicker.hidden = true
             self.countdown.hidden = false
-            //self.startButton.setTitle("Resume", forState: .Normal)
+            self.startButton.setTitle("Resume", forState: .Normal)
         } else {
             self.timePicker.hidden = false
             self.countdown.hidden = true

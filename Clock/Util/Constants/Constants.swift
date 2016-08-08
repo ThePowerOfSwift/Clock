@@ -44,8 +44,7 @@ struct Constants {
     }
     
     struct TimerViewController {
-        static let TimerCell = "TimerCell"
-        static let TimerKey = "TimerKey"
+        static let CountDownKey = "TimerKey"
         static let CounterKey = "CounterKey"
     }
 }

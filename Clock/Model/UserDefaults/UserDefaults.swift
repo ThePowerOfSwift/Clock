@@ -45,26 +45,4 @@ class UserDefaults: NSObject {
         self.userDefaults.setObject(value, forKey: key)
         self.userDefaults.synchronize()
     }
-    
-    func saveDatePickerToNSUserDefaults(value: UIDatePicker, withKey key: String) {
-        self.userDefaults.setObject(value.date, forKey: key)
-        self.userDefaults.synchronize()
-    }
-    
-    func getDatePickerFromNSUserDefaults(from key: String) -> NSDate {
-        return userDefaults.objectForKey(datepikerKey) as! NSDate
-    }
-    
-    
-    func saveCountdownTimeToNSUserDefaults(value: String, withKey key: String) {
-        self.userDefaults.setObject(value, forKey: key)
-        self.userDefaults.synchronize()
-    }
-    
-    func getCountDownTimeFromNSUserDefaults(fromKey key: String) -> String {
-        return userDefaults.objectForKey(key) as? String ?? Constants.StopWatch.StartAllZerosText
-    }
-    
-    
-    
 }

@@ -151,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				48E64C3C1D47CA6100942CCF /* Util */,
-				8B6988B01D48B1FD00CD7199 /* Model */,
 				48E64C2C1D47C11E00942CCF /* View */,
+				8B6988B01D48B1FD00CD7199 /* Model */,
 				48E64C2B1D47C11800942CCF /* ViewController */,
 				48E64C2A1D47C09500942CCF /* Supporting Files */,
 			);
@@ -205,7 +205,7 @@
 			children = (
 				8B6CC7891D48AF12002852F8 /* Storyboard */,
 				48E64C391D47C1F000942CCF /* TableViewCells */,
-				8BE8CD6F1D5491BD00E358F3 /* RoundedButton.swift */,
+				8B08B7451D58591900A686D1 /* UIButons */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -275,6 +275,14 @@
 				48E64C4E1D47F6EC00942CCF /* timezones.plist */,
 			);
 			name = "All Time Zones";
+			sourceTree = "<group>";
+		};
+		8B08B7451D58591900A686D1 /* UIButons */ = {
+			isa = PBXGroup;
+			children = (
+				8BE8CD6F1D5491BD00E358F3 /* RoundedButton.swift */,
+			);
+			name = UIButons;
 			sourceTree = "<group>";
 		};
 		8B6988B01D48B1FD00CD7199 /* Model */ = {
