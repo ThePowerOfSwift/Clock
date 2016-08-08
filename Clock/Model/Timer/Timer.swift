@@ -61,8 +61,8 @@ class Timer: NSObject {
             audioPlayer = try AVAudioPlayer(contentsOfURL: alarmSound)
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-        } catch {
-            print("Play Sound Error")
+        } catch let error as NSError {
+            print("Play Sound Error \(error.description)")
         }
     }
     
@@ -70,8 +70,8 @@ class Timer: NSObject {
         do {
             audioPlayer = try AVAudioPlayer(contentsOfURL: alarmSound)
             audioPlayer.stop()
-        } catch {
-           print("Stop Sound Error")
+        } catch let error as NSError {
+           print("Stop Sound Error \(error.description)")
         }
     }
 
