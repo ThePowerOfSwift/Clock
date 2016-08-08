@@ -13,7 +13,11 @@ class TimerViewController: UIViewController {
     // MARK: - Properties
     
     @IBOutlet weak var countdown: UILabel!
-    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var timePicker: UIDatePicker! {
+        didSet {
+            timePicker.countDownDuration = Timer.sharedInstance.counter
+        }
+    }
     @IBOutlet weak var startButton: RoundedButton!
     @IBOutlet weak var pauseButton: RoundedButton!
     
@@ -41,6 +45,7 @@ class TimerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         countdown.text = Timer.sharedInstance.countdownText
+        //timePicker.countDownDuration = Timer.sharedInstance.counter
     }
     
     
@@ -155,7 +160,10 @@ class TimerViewController: UIViewController {
         enablePauseButton()
         
         // Set countdown.text to timePicker value and start timer
-        //Timer.sharedInstance.counter = timePicker.countDownDuration
+        Timer.sharedInstance.counter = timePicker.countDownDuration
+        
+        
+        
         updateTimer()
         timerOn = true
         timerPaused = false
